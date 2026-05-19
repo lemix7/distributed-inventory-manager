@@ -1,8 +1,0 @@
-{
-  "permissions": {
-    "allow": [
-      "Bash(javac *.java)",
-      "Bash(java SmokeTest)"
-    ]
-  }
-}
