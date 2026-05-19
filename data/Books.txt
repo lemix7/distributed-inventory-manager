@@ -1,0 +1,31 @@
+P1301, Introduction to Algorithms, 17.87
+P1302, Discrete Mathematics, 28.74
+P1303, Discrete Mathematics, 46.07
+P1304, Sapiens, 25.06
+P1305, Introduction to Algorithms, 59.07
+P1306, Introduction to Algorithms, 30.66
+P1307, Design Patterns, 48.64
+P1308, Smart Watch, 50.60
+P1309, Calculus Made Easy, 50.45
+P1310, The Pragmatic Programmer, 24.33
+P1311, Clean Code, 31.80
+P1312, Introduction to Algorithms, 24.24
+P1313, Design Patterns, 54.91
+P1314, Design Patterns, 54.05
+P1315, Design Patterns, 39.79
+P1316, Calculus Made Easy, 8.84
+P1317, Atomic Habits, 44.94
+P1318, The Pragmatic Programmer, 32.03
+P1319, The Pragmatic Programmer, 47.22
+P1320, The Alchemist, 28.30
+P1321, Organic Chemistry, 10.39
+P1322, Smart Watch, 14.46
+P1323, University Physics, 20.63
+P1324, The Alchemist, 40.32
+P1325, The Alchemist, 49.50
+P1326, Computer Networks, 11.75
+P1327, Smart Watch, 25.65
+P1328, Clean Code, 24.21
+P1329, The Alchemist, 26.18
+P1330, The Alchemist, 20.28
+P9999, StudentID_22203941_Demo, 0.01

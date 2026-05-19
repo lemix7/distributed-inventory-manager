@@ -1,0 +1,380 @@
+USING RUN WRONGLY
+========================
+
+public class Run implements Runnable {
+    public void run() {
+        System.out.println("Running thread: " + Thread.currentThread().getName());
+    }
+    public static void main(String[] args) {
+        Thread t = new Thread(new Run());
+        t.run(); // Notice this is run(), not start()
+        System.out.println("Main");
+    }
+}
+
+
+ADDING JOIN FUNCTION
+========================
+
+public class Run implements Runnable {
+    public void run() {
+        System.out.println("Running thread: " + Thread.currentThread().getName());
+    }
+    public static void main(String[] args) {
+        Thread t = new Thread(new Run());
+        t.start(); 
+        t.join();
+        System.out.println("Main");
+    }
+}
+
+
+
+
+
+
+CORRECTED
+============
+
+
+public class Run implements Runnable {
+    public void run() {
+        System.out.println("Running thread: " + Thread.currentThread().getName());
+    }
+    public static void main(String[] args) {
+        Thread t = new Thread(new Run());
+        t.start(); 
+        try{
+            t.join();
+        }catch(InterruptedException e){
+            System.out.println("Error "+ e.getMessage());
+        }
+        
+        System.out.println("Main Terminating");
+    }
+}
+
+
+
+THREADS PERFORMING DIFFERENT TASKS
+
+Using Lambda Expressions
+=======================
+
+
+public class Run{
+    public static void main(String[] args) {
+        Thread t1 = new Thread(() -> { for(int i=0; i<100; i++) System.out.print("A"); });
+        Thread t2 = new Thread(() -> { for(int i=0; i<100; i++) System.out.print("B"); });
+
+        t1.start();
+        t2.start();
+        
+        t1.setPriority(Thread.MIN_PRIORITY);
+        t2.setPriority(Thread.MAX_PRIORITY);
+    }
+}
+
+
+
+
+Using Runnable Interface
+==========================
+public class Run {
+    public static void main(String[] args) {
+        Thread t1 = new Thread(new PrintATask());
+        Thread t2 = new Thread(new PrintBTask());
+        
+        t1.start();
+        t2.start();
+    }
+}
+
+class PrintATask implements Runnable {
+    public void run() {
+        for(int i = 0; i < 100; i++) 
+            System.out.print("A");
+    }
+}
+
+class PrintBTask implements Runnable {
+    public void run() {
+        for(int i = 0; i < 100; i++)
+            System.out.print("B");
+    }
+}
+
+
+
+Extending Thread Class
+=======================
+public class Run {
+    public static void main(String[] args) {
+        PrintAThread t1 = new PrintAThread();
+        PrintBThread t2 = new PrintBThread();
+        
+        t1.start();
+        t2.start();
+    }
+}
+
+class PrintAThread extends Thread {
+    public void run() {
+        for(int i = 0; i < 100; i++) 
+            System.out.print("A");
+    }
+}
+
+class PrintBThread extends Thread {
+    public void run() {
+        for(int i = 0; i < 100; i++) 
+            System.out.print("B");
+
+    }
+}
+
+
+
+
+RACE CONDITION
+========================
+
+public class Run implements Runnable {
+    public static int x = 0; 
+    
+    public void run() {
+        System.out.println("Running thread: " + Thread.currentThread().getName());
+        for(int i = 0; i < 100; i++) {
+                x = x + 1;
+        }
+    }
+    
+    public static void main(String[] args) {
+        Thread[] t = new Thread[5]; 
+        
+        for(int i = 0; i < 5; i++) {
+            t[i] = new Thread(new Run()); 
+            t[i].start(); 
+        }
+        
+    
+        for(int i = 0; i < 5; i++) {
+            try {
+                t[i].join(); 
+            } catch(InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        
+        System.out.println("Final value of x: " + x);
+    }
+}
+
+
+
+SYNCHRONIZED
+=========================
+
+
+public class Run implements Runnable {
+    public static int x = 0;
+    private static final Object lock = new Object(); // Shared lock for synchronization
+
+    public void run() {
+        System.out.println("Running thread: " + Thread.currentThread().getName());
+        for (int i = 0; i < 100; i++) {
+            synchronized (lock) { 
+                x = x + 1;
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        Thread[] t = new Thread[5];
+
+        for (int i = 0; i < 5; i++) {
+            t[i] = new Thread(new Run());
+            t[i].start();
+        }
+
+        for (int i = 0; i < 5; i++) {
+            try {
+                t[i].join();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
+        System.out.println("Final value of x: " + x);
+    }
+}
+
+
+
+ON LECTURE NOTE
+=====================
+
+class MyClass {
+    private int count;
+    
+    public MyClass() {
+        count = 0; 
+    }
+    
+    public int getCount() {
+        return count;
+    }
+    
+    public synchronized void inc() {
+        count++;
+    }
+}
+
+// Worker class that implements Runnable
+class Worker implements Runnable {
+    MyClass obj;
+    
+    public Worker(MyClass o) {
+        obj = o;  
+    }
+    
+    public void run() {
+        for (int i = 0; i < 1000; i++) {
+            obj.inc();
+        }
+    }
+}
+
+public class Updater {
+    public static void main(String[] args) {
+        MyClass o1 = new MyClass();
+        
+        Thread t1 = new Thread(new Worker(o1));
+        Thread t2 = new Thread(new Worker(o1));
+        Thread t3 = new Thread(new Worker(o1));
+    
+        t1.start();
+        t2.start();
+        t3.start();
+        
+        try {
+            t1.join();
+            t2.join();
+            t3.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        
+        System.out.println("Final value of count: " + o1.getCount());
+    }
+}
+
+
+
+PRODUCER-CONSUMER 
+===========================
+import java.util.LinkedList;
+import java.util.Queue;
+
+class MyQueue {
+    private Queue<Integer> queue;
+    private int max;
+    
+    public MyQueue(int s) {
+        this.queue = new LinkedList<>();
+        this.max = s;
+    }
+    
+    public synchronized void put(int item) {
+        while (queue.size() == max) {
+                try {
+                    wait();
+                } catch (InterruptedException e) {  }
+        }
+
+            queue.add(item);
+            System.out.println(Thread.currentThread().getName() + " added: " + item);
+            notifyAll();
+    }
+    
+    public synchronized int take() {
+        while (queue.size() == 0) {
+                try {
+                    wait();
+                } catch (InterruptedException e) {  }
+        }
+
+        int item = queue.remove();
+        System.out.println(Thread.currentThread().getName() + " removed: " + item);
+        notifyAll();
+        return item;
+    }
+    
+    public synchronized int size() {
+        return queue.size();
+    }
+}
+
+class Producer implements Runnable {
+    private MyQueue buffer;
+    private int st;
+    private int sp;
+    
+    public Producer(MyQueue buffer, int st, int sp) {
+        this.buffer = buffer;
+        this.st = st;
+        this.sp = sp;
+    }
+    
+    public void run() {
+        for (int i = st; i <= sp; i++) {
+            buffer.put(i);
+        }
+    }
+}
+
+class Consumer implements Runnable {
+    private MyQueue buffer;
+    private int x = 30; 
+    
+    public Consumer(MyQueue buffer) {
+        this.buffer = buffer;
+    }
+    
+    public void run() {
+        for (int i = 0; i < x; i++) {
+            buffer.take();
+        }
+    }
+}
+
+public class Prod_Cons {
+    public static void main(String[] args) {
+        MyQueue buffer = new MyQueue(5);
+        
+        Thread p1 = new Thread(new Producer(buffer, 1, 20), "Producer-1");
+        Thread p2 = new Thread(new Producer(buffer, 21, 40), "Producer-2");
+        Thread p3 = new Thread(new Producer(buffer, 41, 60), "Producer-3");
+
+        Thread c1 = new Thread(new Consumer(buffer), "Consumer-1");
+        Thread c2 = new Thread(new Consumer(buffer), "Consumer-2");
+
+        p1.start();
+        p2.start();
+        p3.start();
+        c1.start();
+        c2.start();
+
+        try {
+            p1.join();
+            p2.join();
+            p3.join();
+            c1.join();
+            c2.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("Final buffer size: " + buffer.size());
+    }
+}

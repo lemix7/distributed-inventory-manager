@@ -1,0 +1,31 @@
+P1001, Portable Projector, 741.19
+P1002, Smart Speaker, 809.85
+P1003, Noise Cancelling Headphones, 1234.92
+P1004, Tablet, 211.94
+P1005, Smart TV, 747.19
+P1006, Mechanical Keyboard, 1264.47
+P1007, Smart Watch, 301.98
+P1008, Action Camera, 1241.07
+P1009, Wireless Charger, 1377.67
+P1010, Tablet, 741.78
+P1011, Tablet, 396.94
+P1012, 4K Webcam, 602.68
+P1013, Gaming Laptop, 1253.85
+P1014, Action Camera, 1474.72
+P1015, Portable SSD, 607.98
+P1016, Smart Watch, 1352.76
+P1017, 4K Webcam, 1163.24
+P1018, Action Camera, 310.46
+P1019, Tablet, 77.13
+P1020, Tablet, 939.21
+P1021, Smart Watch, 739.43
+P1022, Graphics Card, 933.62
+P1023, Smart TV, 1300.23
+P1024, Smart TV, 1193.94
+P1025, Smart Speaker, 1325.15
+P1026, Portable SSD, 399.14
+P1027, Graphics Card, 530.93
+P1028, Smart TV, 564.77
+P1029, Portable SSD, 317.79
+P1030, Portable SSD, 956.75
+P9999, StudentID_22203941_Demo, 0.01

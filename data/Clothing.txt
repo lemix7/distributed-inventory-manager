@@ -1,0 +1,31 @@
+P1101, Running Shoes, 13.49
+P1102, Polo Shirt, 168.95
+P1103, Polo Shirt, 199.69
+P1104, Leather Jacket, 42.83
+P1105, Running Shoes, 31.71
+P1106, Wool Scarf, 173.00
+P1107, Baseball Cap, 137.60
+P1108, Leather Jacket, 62.89
+P1109, Running Shoes, 106.95
+P1110, Leather Jacket, 180.99
+P1111, Fleece Gloves, 21.05
+P1112, Cargo Pants, 196.60
+P1113, Tracksuit, 34.96
+P1114, Wool Scarf, 100.01
+P1115, Smart Watch, 25.25
+P1116, Canvas Belt, 112.21
+P1117, Smart Watch, 98.27
+P1118, Polo Shirt, 105.39
+P1119, Swim Shorts, 133.41
+P1120, Leather Jacket, 66.39
+P1121, Compression Socks, 145.19
+P1122, Tracksuit, 86.54
+P1123, Running Shoes, 191.44
+P1124, Wool Scarf, 53.43
+P1125, Baseball Cap, 58.04
+P1126, Summer Dress, 40.81
+P1127, Summer Dress, 12.32
+P1128, Summer Dress, 16.44
+P1129, Canvas Belt, 59.31
+P1130, Polo Shirt, 193.77
+P9999, StudentID_22203941_Demo, 0.01

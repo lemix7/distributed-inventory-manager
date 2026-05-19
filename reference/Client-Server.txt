@@ -1,0 +1,104 @@
+SERVER
+=========
+
+import java.io.*;
+import java.net.*;
+
+public class Server {
+    
+    public static void main(String[] args) {
+        int port = 12345; 
+        
+        try (ServerSocket serverSocket = new ServerSocket(port)) {
+            System.out.println("Server started on port " + port);
+            System.out.println("Waiting for client connection...");
+            
+            // Accept client connection
+            Socket clientSocket = serverSocket.accept();
+            System.out.println("Client connected: " + clientSocket.getInetAddress());
+            
+            // Create input and output streams
+            BufferedReader in = new BufferedReader(
+                new InputStreamReader(clientSocket.getInputStream()));
+            PrintWriter out = new PrintWriter(
+                clientSocket.getOutputStream(), true);
+            
+            String inputLine;
+            // Read messages from client until "bye" or connection closes
+            while ((inputLine = in.readLine()) != null) {
+                System.out.println("Received from client: " + inputLine);
+                
+                // Echo back to client
+                out.println("Server echoes: " + inputLine);
+                
+                if (inputLine.equalsIgnoreCase("bye")) {
+                    System.out.println("Closing connection...");
+                    break;
+                }
+            }
+            
+            in.close();
+            out.close();
+            clientSocket.close();
+            
+        } catch (IOException e) {
+            System.err.println("Server error: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+}
+
+
+
+
+CLIENT
+====================
+
+import java.io.*;
+import java.net.*;
+
+public class Client {
+    
+    public static void main(String[] args) {
+        String hostname = "localhost";
+        int port = 12345;
+        
+        try (Socket socket = new Socket(hostname, port)) {
+            System.out.println("Connected to server: " + socket.getRemoteSocketAddress());
+            
+            PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+            BufferedReader in = new BufferedReader(
+                new InputStreamReader(socket.getInputStream()));
+            BufferedReader stdIn = new BufferedReader(
+                new InputStreamReader(System.in));
+            
+            String userInput;
+            System.out.println("Type messages (type 'bye' to exit):");
+            
+            while ((userInput = stdIn.readLine()) != null) {
+                out.println(userInput);
+                
+                String response = in.readLine();
+                System.out.println("Server response: " + response);
+                
+                if (userInput.equalsIgnoreCase("bye")) {
+                    break;
+                }
+            }
+            
+        } catch (UnknownHostException e) {
+            System.err.println("Unknown host: " + hostname);
+        } catch (IOException e) {
+            System.err.println("I/O error: " + e.getMessage());
+        }
+    }
+}
+
+
+
+
+FOR REMOTE CONNECTION
+=======================
+//ADD THE FOLLOWING TO THE SERVER CODE AND USE THE OBTAINED IP ADDRESS IN CLIENT
+
+System.out.println("Server IP: " + InetAddress.getLocalHost().getHostAddress());

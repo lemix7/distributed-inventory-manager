@@ -1,0 +1,121 @@
+import java.io.*;
+
+public class Exemp {
+    public static void main(String[] args) {
+        String fileName = "test3.txt";
+
+        try{
+            BufferedReader reader = new BufferedReader(new FileReader(fileName));
+            
+            String line;
+
+            while ((line = reader.readLine()) != null) {
+                System.out.println(line);
+            }
+            System.out.println("File reading completed.");
+        }
+        catch (FileNotFoundException e) {
+            System.err.println("File not found: " + fileName);
+        }
+        catch (IOException e) {
+            System.err.println("An I/O error reading the file: " + fileName);
+        }
+        catch (Exception e) {
+            System.err.println("Message: " + e.getMessage());
+        }
+    }
+}
+
+============================================================================
+
+import java.io.*;
+
+public class Exemp2 {
+    public static void main(String[] args) {
+        String fileName = "test3.txt";
+
+        try {
+            RandomAccessFile raf = new RandomAccessFile(fileName, "r");
+            String line;
+            // readLine() returns null at end of file
+            while ((line = raf.readLine()) != null) {
+                System.out.println(line);
+            }
+            System.out.println("File reading completed.");
+        }
+        catch (FileNotFoundException e) {
+            System.err.println("File not found: " + fileName);
+        }
+        catch (IOException e) {
+            System.err.println("An I/O error reading the file: " + fileName);
+        }
+        catch (Exception e) {
+            System.err.println("Message: " + e.getMessage());
+        }
+    }
+}
+
+============================================================================
+
+import java.io.*;
+
+public class Exemp2 {
+    public static void main(String[] args) {
+        String fileName = "test3.txt";
+
+        try {
+            RandomAccessFile raf = new RandomAccessFile(fileName, "r");
+            String line;
+            // readLine() returns null at end of file
+            
+            raf.seek(5);
+            System.out.println(raf.readLine());
+            raf.seek(10);
+            System.out.println(raf.readLine());
+            raf.seek(20);
+            System.out.println(raf.readDouble());
+
+        }
+        catch (FileNotFoundException e) {
+            System.err.println("File not found: " + fileName);
+        }
+        catch (IOException e) {
+            System.err.println("An I/O error reading the file: " + fileName);
+        }
+        catch (Exception e) {
+            System.err.println("Message: " + e.getMessage());
+        }
+    }
+}
+
+
+==================================================================================
+
+import java.io.*;
+import java.util.Scanner;
+
+public class Read {
+    public static void main(String[] args) {
+        String fileName = "student.txt";
+
+        try {
+            Scanner fileScanner = new Scanner(new File(fileName));
+            while (fileScanner.hasNextLine()) {
+                String line = fileScanner.nextLine();
+                Scanner lineScanner = new Scanner(line);
+                
+                int id = lineScanner.nextInt();
+                String name = lineScanner.next();
+                double grade = lineScanner.nextDouble();
+                
+                System.out.printf("ID: %d, Name: %s, Grade: %.2f%n", id, name, grade);
+                
+                lineScanner.close(); // close inner scanner
+            }
+        } catch (FileNotFoundException e) {
+            System.err.println("File not found: " + fileName);
+        } catch (Exception e) {
+            System.err.println("Error reading file: " + e.getMessage());
+        }
+    }
+}

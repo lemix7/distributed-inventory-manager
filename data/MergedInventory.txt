@@ -1,0 +1,48 @@
+P1014, Action Camera, 1474.72
+P1022, Graphics Card, 933.62
+P1006, Mechanical Keyboard, 1264.47
+P1225, Frozen Chicken, 29.09
+P9999, StudentID_22203941_Demo, 0.01
+P1317, Atomic Habits, 44.94
+P1106, Wool Scarf, 173.00
+P1017, 4K Webcam, 1163.24
+P1119, Swim Shorts, 133.41
+P1304, Sapiens, 25.06
+P1107, Baseball Cap, 137.60
+P1303, Discrete Mathematics, 46.07
+P1003, Noise Cancelling Headphones, 1234.92
+P1309, Calculus Made Easy, 50.45
+P1209, Whole Wheat Pasta, 26.77
+P1319, The Pragmatic Programmer, 47.22
+P1122, Tracksuit, 86.54
+P1208, Sourdough Bread, 27.95
+P1213, Green Tea, 29.15
+P1326, Computer Networks, 11.75
+P1013, Gaming Laptop, 1253.85
+P1313, Design Patterns, 54.91
+P1123, Running Shoes, 191.44
+P1025, Smart Speaker, 1325.15
+P1110, Leather Jacket, 180.99
+P1227, Extra Virgin Olive Oil, 23.09
+P1111, Fleece Gloves, 21.05
+P1212, Plantain, 18.97
+P1323, University Physics, 20.63
+P1023, Smart TV, 1300.23
+P1219, Almond Milk, 22.82
+P1103, Polo Shirt, 199.69
+P1325, The Alchemist, 49.50
+P1020, Tablet, 939.21
+P1214, Cheddar Cheese, 21.34
+P1204, Organic Apples, 22.15
+P1321, Organic Chemistry, 10.39
+P1121, Compression Socks, 145.19
+P1009, Wireless Charger, 1377.67
+P1311, Clean Code, 31.80
+P1210, Cherry Tomatoes, 28.91
+P1116, Canvas Belt, 112.21
+P1001, Portable Projector, 741.19
+P1126, Summer Dress, 40.81
+P1305, Introduction to Algorithms, 59.07
+P1016, Smart Watch, 1352.76
+P1030, Portable SSD, 956.75
+P1112, Cargo Pants, 196.60

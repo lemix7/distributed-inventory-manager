@@ -1,0 +1,31 @@
+P1201, Sourdough Bread, 25.83
+P1202, Green Tea, 12.54
+P1203, Cherry Tomatoes, 4.68
+P1204, Organic Apples, 22.15
+P1205, Cherry Tomatoes, 9.96
+P1206, Cheddar Cheese, 17.17
+P1207, Portable Projector, 19.62
+P1208, Sourdough Bread, 27.95
+P1209, Whole Wheat Pasta, 26.77
+P1210, Cherry Tomatoes, 28.91
+P1211, Cherry Tomatoes, 9.97
+P1212, Plantain, 18.97
+P1213, Green Tea, 29.15
+P1214, Cheddar Cheese, 21.34
+P1215, Plantain, 11.86
+P1216, Extra Virgin Olive Oil, 13.95
+P1217, Whole Wheat Pasta, 18.22
+P1218, Cheddar Cheese, 6.54
+P1219, Almond Milk, 22.82
+P1220, Cherry Tomatoes, 5.69
+P1221, Plantain, 15.99
+P1222, Portable Projector, 27.38
+P1223, Almond Milk, 6.82
+P1224, Cheddar Cheese, 1.89
+P1225, Frozen Chicken, 29.09
+P1226, Whole Wheat Pasta, 4.11
+P1227, Extra Virgin Olive Oil, 23.09
+P1228, Whole Wheat Pasta, 23.42
+P1229, Cherry Tomatoes, 14.60
+P1230, Green Tea, 4.48
+P9999, StudentID_22203941_Demo, 0.01
