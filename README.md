@@ -10,11 +10,11 @@ The server hosts multiple product inventory files and serves them to connected c
 
 | Field | Value |
 |---|---|
-| Student Name | ahmed mohamed |
-| Student ID | 22203941 |
-| Default Port | 5941 (`5000 + (3941 % 1000)`) |
-| Digit Sum | 23 (`2+2+2+0+3+9+4+1`) |
-| VERIFY Hash | 643 (`(23 × 5941) % 1000`) |
+| Student Name | [Your Name] |
+| Student ID | [Your Student ID] |
+| Default Port | `5000 + (last 4 digits of your ID) % 1000` |
+| Digit Sum | sum of digits of your student ID |
+| VERIFY Hash | `(digit sum × port) % 1000` |
 
 ---
 
@@ -63,7 +63,7 @@ system-pro/
 ./run-generator.sh
 ```
 
-Creates 4 files in `data/`, each with 30 random products + 1 special personalization record (`StudentID_22203941_Demo`), all seeded by the student ID for reproducibility.
+Creates 4 files in `data/`, each with 30 random products + 1 special personalization record, all seeded by the student ID for reproducibility.
 
 ### 3. Start the server
 
@@ -72,11 +72,11 @@ Creates 4 files in `data/`, each with 30 random products + 1 special personaliza
 ```
 
 - JavaFX window opens with the auto-detected IP address
-- Port field defaults to **5941**
+- Port field defaults to your student-ID-based port
 - Click **Start** — the log shows:
   ```
-  Server started by Student ahmed mohamed (ID: 22203941)
-  Server started on port 5941
+  Server started by Student [Your Name] (ID: [Your ID])
+  Server started on port [port]
   ```
 
 ### 4. Start the client (in a second terminal or on a different PC)
@@ -85,7 +85,7 @@ Creates 4 files in `data/`, each with 30 random products + 1 special personaliza
 ./run-client.sh
 ```
 
-- Enter the server's IP and port (`5941`)
+- Enter the server's IP and port
 - Click **Connect** — status turns green and file buttons appear
 
 ---
@@ -96,7 +96,7 @@ Creates 4 files in `data/`, each with 30 random products + 1 special personaliza
 |---|---|
 | Click a file button (e.g. `Electronics.txt`) | Table on the left populates with all product records |
 | Click **Get Overview** | Right pane shows average, highest, and lowest prices across all files |
-| Click **Verify** | Popup shows the VERIFY hash (`643`) confirming student identity |
+| Click **Verify** | Popup shows the VERIFY hash confirming student identity |
 | Click **Disconnect** | Cleanly closes the connection |
 
 ---
@@ -106,14 +106,12 @@ Creates 4 files in `data/`, each with 30 random products + 1 special personaliza
 ### Port Formula
 ```
 port = 5000 + (last 4 digits of student ID) % 1000
-     = 5000 + (3941 % 1000)
-     = 5941
 ```
 
 ### Seeded Inventory Files
-The generator uses `22203941` as the seed for `java.util.Random`, producing reproducible files unique to this student. Every file also contains:
+The generator uses the student ID as the seed for `java.util.Random`, producing reproducible files unique to each student. Every file also contains a special record:
 ```
-P9999, StudentID_22203941_Demo, 0.01
+P9999, StudentID_[YourID]_Demo, 0.01
 ```
 This record has a unique name so it survives the deduplication step and always appears in the merged output.
 
@@ -123,8 +121,6 @@ When a client requests Overview, the server uses `Executors.newFixedThreadPool(4
 ### VERIFY Hash
 ```
 hash = (sum of digits of student ID) × (active port) % 1000
-     = 23 × 5941 % 1000
-     = 643
 ```
 
 ---
@@ -163,7 +159,7 @@ BYE              →  Server closes connection
 |---|---|
 | 4 inventory files, ≥30 records each | ✅ |
 | Student ID as RNG seed | ✅ |
-| Special `StudentID_22203941_Demo` record in every file | ✅ |
+| Special `StudentID_[YourID]_Demo` record in every file | ✅ |
 | Server GUI: IP, port, Start/Stop, status label | ✅ |
 | Activity log with Clear Log button | ✅ |
 | All required log entries | ✅ |
@@ -175,5 +171,5 @@ BYE              →  Server closes connection
 | Deduplication (highest price per name) | ✅ |
 | `MergedInventory.txt` written on Overview | ✅ |
 | Port formula: `5000 + (last4 % 1000)` | ✅ |
-| Startup log: `"Server started by Student ahmed mohamed (ID: 22203941)"` | ✅ |
+| Startup log: `"Server started by Student [Name] (ID: [ID])"` | ✅ |
 | Exception handling for all network/file errors | ✅ |
